@@ -1,0 +1,49 @@
+{
+	"name": "LootFrontend",
+	"version": "0.4.0",
+	"author": [
+	],
+	"AutoloadClasses": {
+		"LootFrontend\\Hooks": "includes/Hooks.php"
+	},
+	"Hooks": {
+		"BeforePageDisplay": [
+			"LootFrontend\\Hooks::onBeforePageDisplay"
+		],
+		"ContentGetParserOutput": [
+			"LootFrontend\\Hooks::onContentGetParserOutput"
+		]
+	},
+	"manifest_version": 1,
+	"ResourceModules": {
+		"loot.init": {
+			"scripts": [
+				"resources/loot.init/index.js"
+			],
+			"dependencies": [
+				"jquery.throttle-debounce"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"loot.serviceWorker": {
+			"raw": true,
+			"scripts": [
+				"resources/loot.serviceWorker/sw-toolbox.js",
+				"resources/loot.serviceWorker/index.js"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		}
+	},
+	"config": {
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "LootFrontend"
+	}
+}
