@@ -3,6 +3,7 @@ namespace LootFrontend;
 use Html;
 use OutputPage;
 use Skin;
+use Exception;
 
 class Hooks {
 	// golden snippet
@@ -14,7 +15,12 @@ class Hooks {
 		}
 		$url .= rawurlencode( $title );
 
+		set_error_handler(function() {
+			throw new Exception('Error at endpoint.');
+		}, E_WARNING);
 		$resp = file_get_contents( $url, false );
+		restore_error_handler();
+
 		$json = json_decode( $resp );
 		$sections = $json->{'sections'};
 		if ( $leadOnly ) {
